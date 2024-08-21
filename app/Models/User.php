@@ -42,4 +42,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    // ユーザーが送信したフレンドリクエスト
+    public function sentFriendRequests()
+    {
+        return $this->hasMany(Friendship::class, 'requester_id');
+    }
+
+    // ユーザーが受信したフレンドリクエスト
+    public function receivedFriendRequests()
+    {
+        return $this->hasMany(Friendship::class, 'receiver_id');
+    }
+
+    // 承認された友達
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'requester_id', 'receiver_id')
+                    ->wherePivot('status', 'accepted');
+    }
 }
