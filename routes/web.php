@@ -32,4 +32,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/chat/{user}', [ChatController::class, 'openChat']);
 Route::post('/chat', [ChatController::class, 'sendMessage']);
 
+Route::post('/friend-request/send/{id}', [FriendshipController::class, 'sendRequest']);
+Route::post('/friend-request/accept/{id}', [FriendshipController::class, 'acceptRequest']);
+Route::post('/friend-request/reject/{id}', [FriendshipController::class, 'rejectRequest']);
+
 require __DIR__.'/auth.php';
