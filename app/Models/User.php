@@ -61,4 +61,18 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'friendships', 'requester_id', 'receiver_id')
                     ->wherePivot('status', 'accepted');
     }
+    public function matchesAsUser1()
+    {
+        return $this->hasmany(BookMatch::class, 'user1_id');
+    }
+
+    public function matchesAsUser2()
+    {
+        return $this->hasMany(BookMatch::class, 'user2_id');
+    }
+
+    public function matches()
+    {
+        return $this->matchesAsUser1->merge($this->matchesAsUser2);
+    }
 }
