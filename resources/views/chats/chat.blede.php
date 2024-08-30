@@ -36,11 +36,11 @@
         const elementInputMessage = document.getElementById( "input_message" );
         const chatId = document.getElementById("chat_id").value;
         
-        {{-- formのsubmit処理 --}}
+        
         function onsubmit_Form()
         {
             
-            {{-- 送信用テキストHTML要素からメッセージ文字列の取得 --}}
+            // {{-- 送信用テキストHTML要素からメッセージ文字列の取得 --}}
             let strMessage = elementInputMessage.value;
             if( !strMessage )
             {
@@ -51,7 +51,7 @@
                 'chat_id': chatId
             };
             
-            {{-- POSTリクエスト送信処理とレスポンス取得処理 --}}
+            //{{-- POSTリクエスト送信処理とレスポンス取得処理 --}}
             axios
                 .post( '/chat', params )
                 .then( response => {
@@ -61,7 +61,7 @@
                 .catch(error => {
                     console.log(error.response)
                 } );
-            {{-- テキストHTML要素の中身のクリア --}}
+           // {{-- テキストHTML要素の中身のクリア --}}
             elementInputMessage.value = "";
         }
          window.addEventListener("DOMContentLoaded", () => {
