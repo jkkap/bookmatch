@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_matches', function (Blueprint $table) {
+        Schema::create('book_matchs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user1_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('user2_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('matching_format_id')->constrained('matching_formats')->onDelete('set null');
+            $table->foreignId('matching_format_id')->constrained('matching_formats')->ondelete('set NULL');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book_matches');
+        Schema::dropIfExists('book_matchs');
     }
 };
